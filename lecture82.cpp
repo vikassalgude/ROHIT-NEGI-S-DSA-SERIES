@@ -133,10 +133,74 @@ int main() {
             
     // }
     head = insertAtPosition(head, pos, 9);
+    //DELETION AT START
+    // while(head!=NULL){
+    
+    //  if(head->next!=NULL){
+    //   node *curr=head; 
+    //   head=head->next;
+    //   delete curr;
+    //   head->prev=NULL;
+    //  }else{
+    //   delete head;
+    //   head=NULL;
+    // }
+    // }
+    // end
+  //  while(head!=NULL){
+    
+    //if only one node
+    //  if(head->next==NULL){
+    //   delete head;
+    //   head=NULL;
+    //  }else{
+    // node *curr=head;
+    // while(curr->next!=NULL){
+    //      curr=curr->next;
+    // }
+    // curr->prev->next=NULL;
+    // delete curr;
+    
+    // }
+    // }
 
+    //DELETE AT MIDDLE
+    //  int pos=2;
+    //  if( pos==1){
+    //   if(head->next!=NULL){
+    //   node *curr=head; 
+    //   head=head->next;
+    //   delete curr;
+    //   head->prev=NULL;
+    //  }else{
+    //   delete head;
+    //   head=NULL;
+    // }
+    //  }else{
+    //   node *curr=head;
+    //   while(--pos){
+    //      curr=curr->next;
+    //   }
+    //   if(curr->next==NULL){
+    //          if(head->next==NULL){
+    //   delete head;
+    //   head=NULL;
+    //  }else{
+    //   node *curr=head;
+    //   while(curr->next!=NULL){
+    //      curr=curr->next;
+    // }
+    // curr->prev->next=NULL;
+    // delete curr;
     
+    //  }
+    //   }else{
+    //    curr->prev->next=curr->next;
+    //    curr->next->prev=curr->next;
+    //    delete curr;
     
-    
+      
+    //  }
     node* trav = head;
     while (trav) {
         cout << trav->data << " "; // Added space for better readability
