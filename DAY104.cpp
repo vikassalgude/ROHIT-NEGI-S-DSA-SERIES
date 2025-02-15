@@ -88,6 +88,63 @@ int total(Node *root, int& count) {
       }
      
 }
+// Function to count the number of leaf nodes in a binary tree. method 2
+// int count(node *root){
+//     if(root==NULL){
+//         return 0;
+//     }
+//     if(!root->left&&!root->right){
+//         return 1;
+//     }
+//     return (count(root->left)+count(root->right));
+// }
+// the function should return the count of Non-Leaf Nodes
+int countNonLeafNodes(Node* root) {
+        // Code here
+        if(root==NULL)
+          return 0;
+        if(!root->left&&!root->right){
+            return 0;
+        }
+        return (1+countNonLeafNodes(root->left)+countNonLeafNodes(root->right));
+}
+//HEIGHT OF BT
+int height(Node* node) {
+        // code here
+        if (node == NULL)
+            return 0;
+        return 1 + max(height(node->left), height(node->right));
+}
+//LARGEST VALUE IN EACH LEVEL
+vector<int> largestValues(Node* root)
+    {
+        //code here
+        vector<int> ans;
+        queue<Node*>q;
+        q.push(root);
+        
+        
+        while(!q.empty())
+        {
+            int n = q.size();
+            int maxi = INT_MIN;
+            for(int i=0;i<n;i++)
+            {
+                Node* temp = q.front();
+                q.pop();
+                maxi = max(temp->data,maxi);
+                if(temp->left)
+                q.push(temp->left);
+                
+                if(temp->right)
+                q.push(temp->right);
+            
+            }
+            ans.push_back(maxi);
+        }
+        
+        return ans;
+    }
 int main() {
     // Create a simple binary tree
     /*
