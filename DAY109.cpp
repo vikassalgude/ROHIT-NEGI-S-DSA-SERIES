@@ -62,5 +62,98 @@ public:
         return result;
     }
 };
-
-
+// DIAGONAL TREE TRAVERSAL
+class Solution {
+  public:
+    void find(Node *root,int pos,int&l){
+        if(!root){
+            return;
+        }  
+        l=max(l,pos);
+        find(root->left,pos+1,l);
+        find(root->right,pos,l);
+        
+    }
+    void finddiagonal(Node*root,int pos,vector<vector<int>>&ans){
+        if(!root){
+            return ;
+        }
+        ans[pos].push_back(root->data);
+        finddiagonal(root->left,pos+1,ans);
+        finddiagonal(root->right,pos,ans);
+        
+    }
+    vector<int> diagonal(Node *root) {
+        // code here
+        int l=0;
+        find(root,0,l);
+        vector<vector<int>>ans(l+1);
+        finddiagonal(root,0,ans);\
+        vector<int>temp;
+        for(int i=0;i<ans.size();i++){
+            for(int j=0;j<ans[i].size();j++){
+                temp.push_back(ans[i][j]);
+            }
+        }
+        return temp;
+    }
+};
+//BOUNDARY TRAVERSAL
+class Solution {
+  public:
+    void leftsubtree(Node*root,vector<int>&ans){
+        if(!root||((!root->left)&&(!root->right))){
+            return ;
+        }
+        ans.push_back(root->data);
+        if(root->left){
+            leftsubtree(root->left,ans);
+        }
+        else{
+            
+            leftsubtree(root->right,ans);
+        }
+        
+    }
+    void leaf(Node* root,vector<int>&ans){
+        if(!root){
+            return;
+        }
+        if(!root->left&&!root->right){
+            ans.push_back(root->data);
+            return;
+        }
+        leaf(root->left,ans);
+        leaf(root->right,ans);
+    }
+    void rightsubtree(Node*root,vector<int>&ans){
+        if(!root||(!root->left&&!root->right)){
+            return ;
+        }
+        
+        if(root->right){
+            rightsubtree(root->right,ans);
+        }
+        else{
+            rightsubtree(root->left,ans);
+        }
+        ans.push_back(root->data);
+        
+    }
+    vector<int> boundaryTraversal(Node *root) {
+        // code here
+        vector<int>ans;
+        ans.push_back(root->data);
+        //LEFT SUBTREE
+        leftsubtree(root->left,ans);
+        //LEAF NODE
+        if(root->left||root->right){
+          leaf(root,ans);
+        }
+        //RIGHTSUBTREE
+        rightsubtree(root->right,ans);
+        
+      // ans.pop_back();
+        return ans;
+    }
+};
