@@ -96,3 +96,28 @@ class Solution{
         return ans;
     }
 };
+// FLATTEN BINARY TREE TO LINKED LIST
+class Solution
+{
+    public:
+    void flatten(Node *root)
+    {
+        //code here
+        while(root){
+            if(!root->left){
+                root=root->right;
+            }
+            else{
+                Node *curr=root->left;
+                while(curr->right){
+                    curr=curr->right;
+                }
+                curr->right=root->right;
+                root->right=root->left;
+                root->left=NULL;
+                root=root->right;
+            }
+        }
+    }
+};
+
