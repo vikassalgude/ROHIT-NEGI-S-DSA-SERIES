@@ -46,3 +46,59 @@ int main() {
     cout<<root->right->data;
     return 0;
 }
+
+//DELETE NODE IN BST
+class Solution {
+  public:
+    // Function to delete a node from BST.
+    Node *deleteNode(Node *root, int target) {
+        // your code goes here
+        if(!root){
+            return nullptr;
+        }
+        if(root->data>target){
+            root->left=deleteNode(root->left,target);
+            return root;
+        }
+        else if(root->data<target){
+            root->right=deleteNode(root->right,target);
+            return root;
+        }else{
+            if(!root->left&&!root->right){
+                delete root;
+                return NULL;
+            }
+            else if(!root->right){
+                Node *temp=root->left;
+                delete root;
+                return temp;
+            }
+            else if(!root->left){
+                Node *temp=root->right;
+                delete root;
+                return temp;
+            }
+            else{
+                Node *child=root->left;
+                Node *parent=root;
+                while(child->right){
+                    parent=child;
+                    child=child->right;
+                }
+                if(root!=parent){
+                    parent->right=child->left;
+                    child->left=root->left;
+                    child->right=root->right;
+                    delete root;
+                    return child;
+                }
+                else{
+                    child->right=root->right;
+                    delete root;
+                    return child;
+                }
+            }
+            
+        }
+    }
+};
