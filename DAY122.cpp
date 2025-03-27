@@ -79,11 +79,11 @@ int main() {
     int arr[]={10,3,8,9,5,13,18,14,11,70};
     BuildMaxHeap(arr,10);
     printHeap(arr,10);
-    priority_queue<int>p;
+    priority_queue<int>p;//MAX HEAP
     p.push(10);
     p.push(11);
     p.push(9);
     cout<<"\n"<<p.top();
-    
+    priority_queue<int,vector<int>,greater<int>>p;//min heap
     return 0;
 }
